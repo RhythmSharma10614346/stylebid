@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  stylebid:
+    image: stylebid
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5002:5002
