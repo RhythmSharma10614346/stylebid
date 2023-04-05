@@ -5,11 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StyleBid</title>
-    <link rel="icon" href="/static/favicon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../static/favicon.png" sizes="32x32" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="aos.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/aos.css">
+    <!-- font-awesome -->
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -18,7 +21,7 @@
         <div class="container-fluid">
 
             <a class="navbar-brand" href="#">
-                <img src="/static/logo.png" alt="Logo" width="150" height="64" class="d-inline-block align-text-top">
+                <img src="/static/logo.png" alt="Logo" width="250" height="80" class="d-inline-block align-text-top">
             </a>
 
             <div class="text-end">
@@ -33,10 +36,10 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Auctions</a>
+                                <a class="nav-link" href="{{ url_for('auction')}}">Auctions</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">SignIn</a>
+                                <a class="nav-link" href="#">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -47,76 +50,61 @@
     <!-- banner -->
     <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(/static/5.png); margin: 0%;">
         <div class="container text-center text-md-left">
-
-            <h2 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class="display-1 text-white font-weight-bold my-1">Lets make a<br> fashionable deal.<br>
-            </h2>
-            <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class="lead text-white my-4">
+            <h1 class=" display-2 font-weight-bold">Lets make a<br> fashionable deal.<br></h1>
+            <p class="lead text-white my-4">
                 Style Bid lets you showcase<br> your style<br>
                 and you can make money with your outfits.
-            </p>
-            <a href="#" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true"
-                class="btn my-4 font-weight-bold atlas-cta cta-green">Get Started</a>
+            </p> <br>
+            <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-green">Get Started</a>
         </div>
-    </div>`
+    </div>
 
     <!-- three-blcok -->
     <div class="container my-5 py-2">
-        <h2 class="text-center font-weight-bold my-5">Smartest protection for your site</h2>
+        <h2 class="text-center display-1">Smartest Auction for your Dresses</h2>
         <div class="row">
-            <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000" data-aos-once="true"
-                class="col-md-4 text-center">
+            <div class="col-md-4 text-center">
                 <img src="/static/favourite.png" alt="dress" class="mx-auto" style="width: 100px; height: 100px;">
                 <h4>Top Notch Dresses</h4>
-                <p>Lorem ipsum dolor sit amet porro his no his deleniti</p>
+                <p>You can find dresses you always wanted</p>
             </div>
-            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true"
-                class="col-md-4 text-center">
-                <img src="/static/auctions.png" alt="Phishing Detect" class="mx-auto"  style="width: 100px; height: 100px;">
-                <h4>Phishing Detect</h4>
-                <p>Ne error antiopam usu. Sed vocen concludaturque ea</p>
+            <div class="col-md-4 text-center">
+                <img src="/static/auctions.png" alt="Phishing Detect" class="mx-auto"
+                    style="width: 100px; height: 100px;">
+                <h4>Safe Bidding</h4>
+                <p>Buyers can make an offer to the seller and negotiate.</p>
             </div>
-            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true"
-                class="col-md-4 text-center">
-                <img src="/static/cash-on-delivery.png" alt="Smart Scan" class="mx-auto"  style="width: 100px; height: 100px;">
-                <h4>Smart Scan</h4>
-                <p>Et usu ocurreret elaboraret doctus prodesse assueverit.</p>
+            <div class="col-md-4 text-center">
+                <img src="/static/cash-on-delivery.png" alt="Smart Scan" class="mx-auto"
+                    style="width: 100px; height: 100px;">
+                <h4>Rewards</h4>
+                <p>Pay right for your desired outfits</p>
             </div>
         </div>
     </div>
 
 
-    <div>
-        <div class="container overflow-hidden text-center" >
-            <div class="row">
-                <div class="col-md-8" style="backdrop-filter: #ffc8ea;">
-                    <img src="/static/Aboutus.png">
-                </div>
-            <div class="col-md-4" >
-                <h2> About Us </h2>
+    <div class="container text-center" style="backdrop-filter: #ffc8ea;">
+        <div class="row">
+            <div class="col-md-8">
+                <img src="/static/4.png">
+            </div>
+            <div class="col-md-4">
+                <h2 class="display-1"> About Us <br> </h2>
                 <p>Style bid offer a unique opportunity to acquire a<br> one-of-a-kind dress that may
-                not be available through traditional retail channels. <br> We provide a range of features to facilitate the bidding process and ensure a fair auction, such as automatic bidding systems, bidder protection policies, and real-time bidding updates. 
-                <br>Buyers can typically view photos and descriptions of the item before placing their bid.
-            </p>
-            </div>
+                    not be available through traditional retail channels.
+                <p>We provide a range of features to facilitate the bidding process and ensure a fair auction, such as
+                    automatic bidding systems, bidder protection policies, and real-time bidding updates.
+                    <br>Buyers can typically view photos and descriptions of the item before placing their bid.
+                </p>
+                <p>Our platform allow the users to express their individual style and personality, stand out from the
+                    crowd, and create a memorable fashion statement.</p>
+                </p>
             </div>
         </div>
     </div>
-    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <!--Footer-->
 
 
 
@@ -126,6 +114,61 @@
         crossorigin="anonymous"></script>
 
 </body>
-
+<footer>
+    <div class="jumbotron jumbotron-fluid" id="contact" style="background-image: url(/static/footer_bg.png);">
+        <div class="container my-5">
+            <div class="row justify-content-between">
+                <div class="col-md-6 text-white">
+                    <br>
+                    <h2 class="font-weight-bold">Contact Us</h2>
+                    <p class="my-4"><br>
+                        Style Bid Auction platform offers unique outfits, while payment benefits include convenience,
+                        security, rewards, and tracking.<br>
+                        Unique dresses offer individuality and support small businesses.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li>Email : info@stylebid.com</li>
+                        <li>Phone : 123-256-8963</li>
+                        <li>Address : 1234 Charming Avenue, Docks, Dublin, Ireland</li>
+                    </ul>
+                </div>
+                <br>
+                <div class="col-md-6" style="padding-top: 50px;">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Name</label>
+                                <input type="name" class="form-control" id="name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" id="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="btn font-weight-bold atlas-cta atlas-cta-wide cta-green my-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron jumbptron-fluid" style="background-color: rgba(255, 236, 211, 0.449);">
+            <div class="row">
+                <div class="col-md-6 text-white align-self-center text-center text-md-left my-2">
+                    Copyright © 2023, Rhythm Sharma <a href="#">StyleBid</a>
+                </div>
+                <div class="col-md-6 align-self-center text-center" id="social-media">
+                    <a href="www.facebook.com" class="fa fa-facebook"></a>
+                    <a href="www.twitter.com" class="fa fa-twitter"></a>
+                    <a href="www.instagram.com" class="fa fa-instagram"></a>
+                    <a href="www.linkedin.com" class="fa fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </html>

@@ -1,0 +1,110 @@
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+h2 {
+    font-size: 2.8rem !important;
+    font-weight: 700;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+
+.atlas-cta {
+    border-radius: 22px !important;
+    padding: 12px 30px !important;
+    font-weight: 700;
+    transition: .3s ease-in-out !important;
+}
+
+.atlas-cta:hover {
+    text-decoration: none;
+    transform: translateY(-5px);
+}
+
+.atlas-cta-wide {
+    width: 100%;
+}
+
+.cta-green {
+    background: #ccb400c9;
+    color: #192440;
+}
+
+.cta-green:hover {
+    color: #ffffff;
+    background: #0031e0b8;
+}
+
+/********** contact **********/
+#contact {
+    background-size: cover;
+}
+
+#contact ul li {
+    padding: 3px 0;
+}
+
+#contact form {
+    color: #ffffffbc;
+}
+
+#contact form input,
+#contact form textarea {
+    background: transparent;
+    border: 1px solid #000000d3;
+    color: #ffffff;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+
+  .fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* Add a hover effect if you want */
+  .fa:hover {
+    opacity: 0.9;
+  }
+  
+  /* Set a specific color for each brand */
+  
+  /* Facebook */
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  /* Twitter */
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  } 
+
+  .fa-instagram {
+    background: #901244c2;
+    color: white;
+  }
+
+  .fa-linkedin {
+    background: #067bb5;
+    color: white;
+  }
