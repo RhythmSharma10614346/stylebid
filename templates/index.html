@@ -36,10 +36,10 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('auction')}}">Auctions</a>
+                                <a class="nav-link" href="{{url_for('auction')}}">Auctions</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="{{url_for('login')}}">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -126,32 +126,16 @@
                         security, rewards, and tracking.<br>
                         Unique dresses offer individuality and support small businesses.
                     </p>
-                    <ul class="list-unstyled">
-                        <li>Email : info@stylebid.com</li>
-                        <li>Phone : 123-256-8963</li>
-                        <li>Address : 1234 Charming Avenue, Docks, Dublin, Ireland</li>
-                    </ul>
                 </div>
                 <br>
                 <div class="col-md-6" style="padding-top: 50px;">
-                    <form>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="name">Name</label>
-                                <input type="name" class="form-control" id="name">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="Email">Email</label>
-                                <input type="email" class="form-control" id="Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="3"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="btn font-weight-bold atlas-cta atlas-cta-wide cta-green my-3">Submit</button>
-                    </form>
+                    <ul class="list-unstyled">
+                        <address>
+                            <li><a href="mailto:stylebidrhythm@gmail.com"></li>stylebidrhythm@gmail.com</a>
+                            <li>Phone : 123-256-8963</li>
+                            <li>Address : 1234 Charming Avenue, Docks, Dublin, Ireland</li>
+                        </address>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -170,5 +154,34 @@
         </div>
     </div>
 </footer>
+
+
+<script>
+    function submitForm() {
+        // Get the form data
+        const form = document.getElementById('my-form');
+        const formData = new FormData(form);
+
+        // Send an AJAX request to the server
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/submit-form');
+        xhr.onload = function () {
+            // Handle the AJAX response here
+            const response = JSON.parse(xhr.responseText);
+            alert(response.message);
+        };
+        xhr.send(formData);
+    }
+
+    const form = document.getElementById('my-form');
+    form.addEventListener('submit', function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Submit the form using AJAX
+        submitForm();
+    });
+
+</script>
 
 </html>

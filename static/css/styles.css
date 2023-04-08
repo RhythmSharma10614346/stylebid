@@ -108,3 +108,22 @@ button {
     background: #067bb5;
     color: white;
   }
+  
+  .bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    }
+    
+    @media (min-width: 1025px) {
+    .h-custom-2 {
+    height: 100%;
+    }
+    }
+
+    address {
+      display: block;
+      font-style: italic;
+    }

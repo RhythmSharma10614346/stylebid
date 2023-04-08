@@ -1,0 +1,14 @@
+{
+   
+    "python.pythonPath": "/path/to/python",
+    "python.analysis.extraPaths": [
+        "./app"
+    ],
+
+"python.analysis.autoSearchPaths": true,
+"python.analysis.useLibraryCodeForTypes": true,
+"python.analysis.typeCheckingMode": "off",
+"python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "warning"
+},
+}

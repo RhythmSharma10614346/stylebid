@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\rhysh\OneDrive\Documents\DBS\stylebid\virtenv"
+VIRTUAL_ENV="C:\Users\rhysh\OneDrive\Documents\DBS\stylebid\virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -55,9 +55,9 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    PS1="(virtenv) ${PS1:-}"
+    PS1="(virtual) ${PS1:-}"
     export PS1
-    VIRTUAL_ENV_PROMPT="(virtenv) "
+    VIRTUAL_ENV_PROMPT="(virtual) "
     export VIRTUAL_ENV_PROMPT
 fi
 

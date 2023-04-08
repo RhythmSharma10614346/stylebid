@@ -1,0 +1,24 @@
+<html>
+   <body>
+      <form action = "http://localhost:5000/uploader" method = "POST" 
+         enctype = "multipart/form-data" name="upload">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>   
+   </body>
+<h1>Upload your file</h1>
+<form method="post" class="col-12" enctype="multipart/form-data">
+    <ul class="row">
+        <li class="col-xs-6 col-lg-12" style="border: none;">
+               <div class="form-group">
+                       <input id="input-id" type="file" name="photo" class="file form-control" multiple data-preview-file-type="text" data-allowed-file-extensions='["png", "jpg"]'>
+                </div>
+                <div>
+                    <placeholder>Descpription</placeholder>
+                </div>
+        </li>
+    </ul>
+    <button type="submit" class="btn form-control btn-default">Upload</button>
+   </form>
+
+   </html>
