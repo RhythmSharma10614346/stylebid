@@ -1,17 +1,20 @@
 import os
+import bcrypt
 from flask import Flask, flash, redirect, jsonify, render_template, session, url_for, request, send_from_directory
-from flask_bootstrap import Bootstrap
+
 import mysql.connector
 from login import loginf
 from flask_mail import Message, Mail
 import smtplib
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
 
 app = Flask(__name__ , static_folder:= "/static")
-app.secret_key=''
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 UPLOAD_FOLDER = 'static/uploads'
@@ -57,24 +60,10 @@ def auction():
 	return render_template("auction.html")
 
 @app.route('/login')
-def login():
+def loginpage():
 	return render_template("login.html")
 
-@app.route('/userlogin',methods=['GET','POST'])
-def userlogin():
-	if request.method == 'POST':
-		email = request.form['email']
-		password = request.form['password']
-		cursor=mydb.cursor()
-		cursor.execute('SELECT * FROM webstylebid.userdetails;')
-		data = cursor.fetchall()
-		cursor.close()
-		if len(data)>0:
-			return render_template("auction.html")
-		else:
-			flash('Invalid Credentials')
-			return redirect(url_for('login'))
-		
+
 @app.route('/submit-form', methods=['GET','POST'])
 def submit_form():
     # Get the form data
@@ -168,8 +157,6 @@ def uploaded_file(filename):
     print(filename)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -180,18 +167,51 @@ def register():
         address = request.form['address']
         gender = request.form['gender']
         phone = request.form['phone']
-        # Insert user into database
-        sql = "INSERT INTO users (username, email, password, address, gender, phone) VALUES (%s, %s, %s, %s, %s, %s)"
-        values = (username, email, password, address, gender, phone)
+
+        # Hash password with bcrypt
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        # Insert data into DB
+        cursor = mydb.cursor()
+        sql = "INSERT INTO users (username, email, securepass, address, gender, phone) VALUES (%s, %s, %s, %s, %s, %s)"
+        values = (username, email, hashed_password, address, gender, phone)
         cursor.execute(sql, values)
         mydb.commit()
-        return redirect('/success')
+        cursor.close()
+        
+        return redirect(url_for('login'))
     return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Get form data
+        email = request.form['email']
+        password = request.form['password']
+
+        # Get user data from DB
+        cursor = mydb.cursor()
+        sql = "SELECT securepass FROM users WHERE email = %s"
+        values = (email,)
+        cursor.execute(sql, values)
+        result = cursor.fetchone()
+        cursor.close()
+
+        # Check if user exists and password matches
+        if result and bcrypt.checkpw(password.encode('utf-8'), result[0].encode('utf-8')):
+            flash('Login successful.')
+            return redirect(url_for('success'))
+        else:
+            flash('Invalid email or password.')
+            return redirect(url_for('login'))
+
+    return render_template('login.html')
 
 @app.route('/success')
 def success():
-    return "Registration successful!"
-
+     flash('Registration completed, Login to Stylebid')
+     return render_template('login.html', 'Welcome to StyleBid')
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
