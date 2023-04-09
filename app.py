@@ -3,17 +3,16 @@ import bcrypt
 from flask import Flask, flash, redirect, jsonify, render_template, session, url_for, request, send_from_directory
 
 import mysql.connector
-from login import loginf
 from flask_mail import Message, Mail
 import smtplib
 from werkzeug.utils import secure_filename
-from werkzeug.security import generate_password_hash, check_password_hash
+import re
 
 
 
 
 app = Flask(__name__ , static_folder:= "/static")
-app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+app.secret_key = 'as)kshued*csmookc@sdcjms]'
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -50,10 +49,9 @@ app.config['FLASKY_MAIL_SENDER'] = 'Flasky Admin <stylebidrhythm@gmail.com>'
 
 mail = Mail(app)
 
-
 @app.route('/')
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
 
 @app.route('/auction')
 def auction():
@@ -134,7 +132,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route("/bidder", methods=["GET", "POST"])
+@app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
         if 'bidder' not in request.files:
@@ -150,14 +148,14 @@ def upload():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file', filename=filename))
-    return render_template('/bidder.html')
+    return render_template('upload.html')
 
 @app.route('/uploaded_file/<path:filename>')
 def uploaded_file(filename):
     print(filename)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods =['GET', 'POST'])
 def register():
     if request.method == 'POST':
         # Get form data
@@ -168,13 +166,21 @@ def register():
         gender = request.form['gender']
         phone = request.form['phone']
 
+        #converting password to array of bytes
+
+        bytes = password.encode('utf-8')
+
+        salt = bcrypt.gensalt()
+
         # Hash password with bcrypt
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hash = bcrypt.hashpw(bytes, salt)
+
+        print(hash)
 
         # Insert data into DB
         cursor = mydb.cursor()
         sql = "INSERT INTO users (username, email, securepass, address, gender, phone) VALUES (%s, %s, %s, %s, %s, %s)"
-        values = (username, email, hashed_password, address, gender, phone)
+        values = (username, email, password, address, gender, phone)
         cursor.execute(sql, values)
         mydb.commit()
         cursor.close()
@@ -182,35 +188,41 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods =['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        # Get form data
+    msg = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         email = request.form['email']
         password = request.form['password']
 
-        # Get user data from DB
         cursor = mydb.cursor()
-        sql = "SELECT securepass FROM users WHERE email = %s"
-        values = (email,)
-        cursor.execute(sql, values)
-        result = cursor.fetchone()
+        cursor.execute('SELECT * FROM webstylebid.message;')
+        users = cursor.fetchall()
         cursor.close()
 
-        # Check if user exists and password matches
-        if result and bcrypt.checkpw(password.encode('utf-8'), result[0].encode('utf-8')):
-            flash('Login successful.')
-            return redirect(url_for('success'))
+        if users:
+            session['loggedin'] = True
+            session['id'] = users['id']
+            session['username'] = users['username']
+            msg = 'Logged in successfully !'
+            return render_template('index.html', msg = msg)
         else:
-            flash('Invalid email or password.')
-            return redirect(url_for('login'))
+            msg = 'Incorrect username / password !'
 
-    return render_template('login.html')
+    return redirect(url_for('success'))
+
+
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 @app.route('/success')
 def success():
      flash('Registration completed, Login to Stylebid')
-     return render_template('login.html', 'Welcome to StyleBid')
+     return render_template('auction.html')
     
 
 if __name__ == '__main__':

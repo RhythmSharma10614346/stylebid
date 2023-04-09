@@ -15,7 +15,7 @@ button {
 }
 
 .jumbotron {
-    margin-bottom: 0 !important;
+    margin-bottom: 5% !important;
 }
 
 .atlas-cta {
@@ -126,4 +126,13 @@ button {
     address {
       display: block;
       font-style: italic;
+    }
+    
+    
+  .auctionbg {
+    
+    @media (min-width: 1600px)
+     {height:1000px}
+
+      
     }
