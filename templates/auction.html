@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,9 +38,7 @@
     </div>
   </nav>
 
-  </html>
-
-  
+ 
 <section class="vh-100"
 style="background-image: url('/static/3.png');">
 <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -48,21 +46,22 @@ style="background-image: url('/static/3.png');">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="mask" style="background-color: rgba(0, 0, 0, 0.548);">
         <div class="d-flex justify-content-center align-items-cover">
-          <div class="text-white">
+          <div class="text-white" style="position: relative; padding-top: 5%; padding-bottom: 7%;">
+            <br>
+            <h4 class="display-4">Welcome to Stylebid</h4>
             <h1 class=" display-1 mb-3">Choose what describe you the best.</h1>
             <br>
-            <h4 class="display-2 mb-3">Welcome to Stylebid</h4>
-            <br>
-          <a class="btn btn-outline-light btn-lg m-2" href="{{url_for('upload')}}" role="button" >Auctioner</a>
-          <a class="btn btn-outline-light btn-lg m-2" href="{{url_for('index')}}" role="button">Bidder</a>
+          <a class="btn my-4 font-weight-bold atlas-cta cta-green" href="{{ url_for('contact')}}" role="button" >Want to Auction</a>
+          <a class="btn my-4 font-weight-bold atlas-cta cta-green" href="{{ url_for('bids')}}" role="button">Want to Bid</a>
+          <br><br>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
 </div>
 </section>
-
+</body>
 <footer class="bg-light text-center text-black">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
@@ -75,3 +74,4 @@ style="background-image: url('/static/3.png');">
     </div>
     <!-- Copyright -->
 </footer>
+</html>

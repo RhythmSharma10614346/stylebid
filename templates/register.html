@@ -18,9 +18,9 @@
 
       <div class="col-sm-6 px-0 d-none d-sm-block">
         <img src="/static/register.jpg" alt="Login image" class="w-100 vh-100"
-            style="object-fit: fill; object-position: left;">
+          style="object-fit: fill; object-position: left;">
       </div>
-      <div class="col-sm-6 text-black">
+      <div class="col-md-6 text-black">
 
         <div class="d-flex align-items-start h-custom-2 px-5 ms-xl-2 mt-3 pt-3 pt-xl-0 mt-xl-n2">
 
@@ -28,32 +28,40 @@
 
             <h1 class="display-6 fw-normal mb-3 pb-3" style="letter-spacing: 0.5px;">Create an account</h1>
 
-            <input type="text" id="username" name="username" required class="form-control form-control-md" />
-            <label class="form-label" for="username">Your Name</label>
-
-
             <div>
-              <input type="email" id="email" name="email" class="form-control form-control-md" />
+              <label class="form-label" for="username">Your Name</label>
+            </div>
+            <input type="text" id="username" name="username"  placeholder="Name" required class="form-control-lg form-control-md" />
+            <div>
+
               <label class="form-label" for="email">Your Email</label>
             </div>
+            <input type="email" id="email" name="email" placeholder="Email" class="form-control-lg form-control-md" />
             <div class="form-outline">
-              <input type="password" id="password" name="password" class="form-control form-control-md" />
+
               <label class="form-label" for="password">Password</label>
             </div>
+            <input type="password" id="password" name="password" placeholder="Create Password" class="form-control-lg form-control-md" />
             <div class="form-outline">
-              <input type="password" id="repeat-password" name="password" class="form-control form-control-md" />
+
               <label class="form-label" for="repeat-password">Repeat your password</label>
             </div>
+            <input type="password" id="repeat-password" name="password" placeholder="Confirm Password" class="form-control-lg form-control-md" />
             <div class="form-outline">
-              <input type="text" id="address" name="address" required class="form-control form-control-md" />
               <label class="form-label" for="address">Address</label>
+
+
             </div>
+            <input type="text" id="address" name="address"  placeholder="Address" required class="form-control-lg form-control-md" />
 
             <div class="form-outline">
-              <input type="tel" id="phone" name="phone" class="form-control form-control-md" />
               <label class="form-label" for="phone">Phone Number</label>
             </div>
-            <div>
+            <input type="tel" id="phone" name="phone" placeholder="Phone" class="form-control-lg form-control-md" />
+            
+
+            <div class="form-control-md">
+              <br>
               <label for="gender">Gender:</label>
               <select id="gender" name="gender">
                 <option value="male">Male</option>
@@ -61,11 +69,12 @@
                 <option value="other">Other</option>
               </select>
             </div>
-            
-              <button type="submit" class="btn my-1 font-weight-bold atlas-cta cta-green">Register</button>
-  
+            <br>
 
-            
+            <button type="submit" class="btn my-4 font-weight-bold atlas-cta cta-green" >Register</button>
+
+
+
 
             <p class="small mb-5 pb-lg-2">Have already an account? <a href="{{url_for('login')}}"
                 class="fw-bold text-body"><u>Login here</u></a></p>

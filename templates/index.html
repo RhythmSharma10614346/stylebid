@@ -45,20 +45,24 @@
         </div>
     </nav>
     <!-- banner -->
-    <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(/static/5.png); margin: 0%;">
+    <div class="jumbotron jumbotron-fluid" id="banner"
+        style="background-image: url(/static/home-banner.png); padding-top: 6%; padding-bottom:8%;">
         <div class="container text-center text-md-left">
-            <h1 class=" display-2 font-weight-bold">Lets make a<br> fashionable deal.<br></h1>
-            <p class="lead text-white my-4">
-                Style Bid lets you showcase<br> your style<br>
-                and you can make money with your outfits.
-            </p> <br>
-            <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-green">Get Started</a>
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.548); margin: 3%;">
+                <h1 class=" display-1 lead font-weight-bold text-white my-4">Lets make a fashionable deal.</h1>
+
+                <p class="display-6 text-white" style="margin-top: 5%;">
+                    Style Bid lets you showcase<br> your style and you can make money with your outfits.
+                </p>
+                <a href="{{url_for('login')}}" class="btn my-4 font-weight-bold atlas-cta cta-green">Get Started</a>
+            </div>
         </div>
     </div>
 
-    <!-- three-blcok -->
+    <!-- three-block -->
     <div class="container my-5 py-2">
-        <h2 class="text-center display-1">Smartest Auction for your Dresses</h2>
+        <h2 class="font-weight-semi-bold" style="text-align: center; margin-bottom: 2%;">Smartest Auction for your
+            Dresses</h2>
         <div class="row">
             <div class="col-md-4 text-center">
                 <img src="/static/favourite.png" alt="dress" class="mx-auto" style="width: 100px; height: 100px;">
@@ -81,13 +85,13 @@
     </div>
 
 
-    <div class="container text-center" style="backdrop-filter: #ffc8ea;">
+    <div class="container text-center" >
         <div class="row">
             <div class="col-md-8">
-                <img src="/static/slide.png">
+                <img src="/static/aboutus.png">
             </div>
             <div class="col-md-4">
-                <h2 class="display-1"> About Us <br> </h2>
+                <h2 class="font-weight-semi-bold" style="text-align: center; margin: 7%;"> About Us <br> </h2>
                 <p>Style bid offer a unique opportunity to acquire a<br> one-of-a-kind dress that may
                     not be available through traditional retail channels.
                 <p>We provide a range of features to facilitate the bidding process and ensure a fair auction, such as
@@ -97,7 +101,9 @@
                 <p>Our platform allow the users to express their individual style and personality, stand out from the
                     crowd, and create a memorable fashion statement.</p>
                 </p>
+
             </div>
+            <a href="{{url_for('index')}}" class="btn my-4 font-weight-bold atlas-cta cta-green">Know more</a>
         </div>
     </div>
 
@@ -112,31 +118,36 @@
 
 </body>
 <footer>
-    <div class="jumbotron jumbotron-fluid" id="contact" style="background-image: url(/static/footer_bg.png);">
-        <div class="container my-5">
+    <div id="contact" style="background-image: url(/static/footerbg.png);">
+        <div class="container my-5" style="padding-top: 4%; padding-bottom: -10px;">
+
             <div class="row justify-content-between">
-                <div class="col-md-6 text-white">
-                    <br>
-                    <h2 class="font-weight-bold">Contact Us</h2>
+                <div class="text-white" style="background-color: rgba(0, 0, 0, 0.720);">
+
+                    <h2 class="font-weight-bold"> Style Bid</h2>
                     <p class="my-4"><br>
-                        Style Bid Auction platform offers unique outfits, while payment benefits include convenience,
+                        It is an Auction platform which offers unique outfits, while payment benefits include
+                        convenience,
                         security, rewards, and tracking.<br>
                         Unique dresses offer individuality and support small businesses.
                     </p>
                 </div>
                 <br>
-                <div class="col-md-6" style="padding-top: 50px;">
+                <div class="text-white" style="background-color: rgba(0, 0, 0, 0.720);">
+                    <h2 class="font-weight-bold"> Reach Us</h2>
+                    <br>
                     <ul class="list-unstyled">
                         <address>
-                            <li><a href="mailto:stylebidrhythm@gmail.com"></li>stylebidrhythm@gmail.com</a>
+                            <li>Email: <a href="mailto:stylebidrhythm@gmail.com">stylebidrhythm@gmail.com</a></li>
                             <li>Phone : 123-256-8963</li>
                             <li>Address : 1234 Charming Avenue, Docks, Dublin, Ireland</li>
                         </address>
                     </ul>
                 </div>
             </div>
+
         </div>
-        <div class="jumbotron jumbptron-fluid" style="background-color: rgba(255, 236, 211, 0.449);">
+        <div style=" padding: 10px; background-color: rgba(255, 255, 255, 0.638);">
             <div class="row">
                 <div class="col-md-6 text-white align-self-center text-center text-md-left my-2">
                     Copyright © 2023, Rhythm Sharma <a href="#">StyleBid</a>
@@ -151,34 +162,5 @@
         </div>
     </div>
 </footer>
-
-
-<script>
-    function submitForm() {
-        // Get the form data
-        const form = document.getElementById('my-form');
-        const formData = new FormData(form);
-
-        // Send an AJAX request to the server
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/submit-form');
-        xhr.onload = function () {
-            // Handle the AJAX response here
-            const response = JSON.parse(xhr.responseText);
-            alert(response.message);
-        };
-        xhr.send(formData);
-    }
-
-    const form = document.getElementById('my-form');
-    form.addEventListener('submit', function (event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
-        // Submit the form using AJAX
-        submitForm();
-    });
-
-</script>
 
 </html>
